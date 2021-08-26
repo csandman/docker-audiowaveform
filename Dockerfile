@@ -5,11 +5,12 @@ ENV GTEST_VERSION 1.11.0
 ENV FLAC_VERSION 1.3.3
 
 RUN apk update \
-  # Setup dependencies
+  # Setup build dependencies
   && apk add --virtual build-dependencies \
   cmake \
   make \
   automake \
+  # Setup runtime dependencies
   && apk add \
   boost-dev \
   g++ \
@@ -35,16 +36,18 @@ RUN apk update \
   && make \
   && make install \
   && cd .. \
-  # Install audiowaveform
+  # Download audiowaveform
   && wget https://github.com/bbc/audiowaveform/archive/refs/tags/${VERSION}.tar.gz \
   && tar xzf ${VERSION}.tar.gz \
   && rm -f ${VERSION}.tar.gz \
   && mv audiowaveform-${VERSION} audiowaveform \
   && cd audiowaveform \
+  # Download/Install googletest
   && wget https://github.com/google/googletest/archive/release-${GTEST_VERSION}.tar.gz \
   && tar xzf release-${GTEST_VERSION}.tar.gz \
   && rm -f release-${GTEST_VERSION}.tar.gz \
   && ln -s googletest-release-${GTEST_VERSION} googletest \
+  # Build audiowaveform
   && mkdir build \
   && cd build \
   && cmake BUILD_STATIC=1 .. \
