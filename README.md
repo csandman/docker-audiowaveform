@@ -1,9 +1,9 @@
-# Docker Audiowaveform Alpine Builder
+# Docker [audiowaveform](https://github.com/bbc/audiowaveform) Alpine Builder
 
 Build side docker container to use in multistage builds for reducing total container size
 
 - [Source repo bbc/audiowaveform](https://github.com/bbc/audiowaveform)
-- [This repo](https://github.com/csandman/audiowaveform) is alpine Dockerfile with **audiowaveform** building in it
+- [This repo](https://github.com/csandman/docker-audiowaveform) is alpine Dockerfile with **audiowaveform** building in it
 - [Docker Hub Container](https://hub.docker.com/r/csandman/audiowaveform) with compiled **audiowaveform** binaries. (**audiowaveform** and **audiowaveform_test** are in /bin directory)
 
 ## Usage in multistage builds
